@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Echoverse – Green Room</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/echoverse.css" />
+  </head>
+  <body class="green-room">
+    <div class="ambient-overlay"></div>
+    <div class="stars"></div>
+
+    <div class="green-container">
+      <h1 class="green-title">🌿 Green Room: Neon Serenity</h1>
+      <p class="green-tagline">Welcome to the luminous side of Echoverse</p>
+
+      <div class="interact-zone">
+        <button id="glowDrink">🍹 Grab a Glow Drink</button>
+        <button id="partyPulse">🎉 Pulse the Party</button>
+        <!-- Mirror to Red Room -->
+        <div class="mirror-gate" id="mirrorToRed"></div>
+      </div>
+    </div>
+
+    <audio
+      id="partyMusic"
+      src="assets/audio/garden-party.mp3"
+      autoplay
+      loop
+    ></audio>
+
+    <script>
+      const drinkBtn = document.getElementById("glowDrink");
+      const pulseBtn = document.getElementById("partyPulse");
+
+      drinkBtn.addEventListener("click", () => {
+        alert("You taste starlight... and maybe pineapple.");
+      });
+
+      pulseBtn.addEventListener("click", () => {
+        document.body.classList.toggle("pulse");
+      });
+    </script>
+    <script>
+      const mirror =
+        document.getElementById("mirrorToGreen") ||
+        document.getElementById("mirrorToRed");
+      const veil = document.createElement("div");
+      veil.style.position = "fixed";
+      veil.style.top = 0;
+      veil.style.left = 0;
+      veil.style.width = "100%";
+      veil.style.height = "100%";
+      veil.style.background =
+        "radial-gradient(ellipse at center, #000000 0%, #220011 100%)";
+      veil.style.opacity = 0;
+      veil.style.zIndex = 999;
+      veil.style.transition = "opacity 1.5s ease-in";
+
+      mirror?.addEventListener("click", () => {
+        document.body.appendChild(veil);
+        setTimeout(() => (veil.style.opacity = 1), 50);
+
+        setTimeout(() => {
+          const destination =
+            mirror.id === "toRedRoom" ? "red.html" : "green.html";
+          window.location.href = "mirror.html?from=green";
+        }, 1700);
+      });
+    </script>
+  </body>
+</html>

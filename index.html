@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echoverse – Enter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/echoverse.css" />
+  </head>
+  <body>
+    <!-- Animated Fog Layer -->
+    <div class="fog"></div>
+    <div class="overlay">
+      <div class="entry-box">
+        <h1 class="title">Ech🌒verse</h1>
+        <p class="warning flicker">⚠️ Enter at your own risk ⚠️</p>
+        <form id="entryForm">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
+          <button type="submit">Continue</button>
+        </form>
+        <audio src="assets/audio/echoverse-ambient.mp3" autoplay loop></audio>
+        <audio
+          id="doorSound"
+          src="assets/audio/door-creak.mp3"
+          preload="auto"
+        ></audio>
+        <script>
+          const form = document.getElementById("entryForm");
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const doorSound = document.getElementById("doorSound");
+
+            // Play sound
+            doorSound.currentTime = 0;
+            doorSound.play().catch((err) => console.warn("Sound error:", err));
+
+            // Fade out
+            document.body.classList.add("fade-out");
+
+            // Navigate after delay
+            setTimeout(() => {
+              window.location.href = `select.html?username=${encodeURIComponent(
+                name
+              )}&email=${encodeURIComponent(email)}`;
+            }, 1700);
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

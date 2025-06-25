@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Echoverse – Red Room</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/echoverse.css" />
+  </head>
+  <body class="red-room">
+    <div class="red-overlay">
+      <h1 class="red-title">🔻 The Red Room</h1>
+      <p class="red-tagline">You were expected.</p>
+
+      <div class="room-elements">
+        <div class="portrait" id="portrait"></div>
+        <div class="mirror" id="mirror"></div>
+        <div class="corner-fire top-left"></div>
+        <div class="corner-fire top-right"></div>
+        <div class="corner-fire bottom-left"></div>
+        <div class="corner-fire bottom-right"></div>
+      </div>
+      <!-- Mirror to Green Room -->
+      <div class="mirror-gate" id="mirrorToGreen"></div>
+      <div id="whisper" class="whisper hidden">“We remember everything.”</div>
+
+      <audio
+        id="red-ambience"
+        src="assets/audio/haunted-room.mp3"
+        autoplay
+        loop
+      ></audio>
+      <audio
+        id="creak"
+        src="assets/audio/floor-creak.mp3"
+        preload="auto"
+      ></audio>
+    </div>
+    <script>
+      const mirror = document.getElementById('mirrorToRed') || document.getElementById('mirrorToGreen');
+      const veil = document.createElement("div");
+      veil.style.position = "fixed";
+      veil.style.top = 0;
+      veil.style.left = 0;
+      veil.style.width = "100%";
+      veil.style.height = "100%";
+      veil.style.background =
+        "radial-gradient(ellipse at center, #000000 0%, #220011 100%)";
+      veil.style.opacity = 0;
+      veil.style.zIndex = 999;
+      veil.style.transition = "opacity 1.5s ease-in";
+
+      mirror?.addEventListener("click", () => {
+        document.body.appendChild(veil);
+        setTimeout(() => (veil.style.opacity = 1), 50);
+
+        setTimeout(() => {
+          const destination =
+            mirror.id === "toRedRoom" ? "red.html" : "green.html";
+          window.location.href = "mirror.html?from=red";
+        }, 1700);
+      });
+    </script>
+  </body>
+</html>

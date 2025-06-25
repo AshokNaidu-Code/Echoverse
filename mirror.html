@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Through the Mirror</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/echoverse.css" />
+  </head>
+  <body class="mirror-limbo">
+    <div class="veil">
+      <h1 class="veil-title">The Mirror Sees You</h1>
+      <p class="veil-message">You are neither here nor there.</p>
+    </div>
+
+    <audio src="assets/audio/whisper-transition.mp3" autoplay></audio>
+    <script>
+  const params = new URLSearchParams(window.location.search);
+  const origin = params.get('from') || 'green';
+
+  let destination;
+  if (origin === 'green') {
+    destination = 'red.html';
+  } else if (origin === 'red') {
+    destination = 'green.html';
+  } else {
+    destination = 'select.html'; // fallback safety
+  }
+
+  setTimeout(() => {
+    window.location.href = destination;
+  }, 5000);
+</script>
+  </body>
+</html>
+
