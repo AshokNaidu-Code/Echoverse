@@ -11,14 +11,14 @@ const PORT = process.env.PORT || 3000;
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
-client
-  .connect()
+client.connect()
   .then(() => {
     console.log("✅ Connected to MongoDB successfully!");
   })
   .catch((err) => {
     console.error("❌ Failed to connect to MongoDB:", err.message);
   });
+
 
 app.use(cors());
 app.use(express.json());
