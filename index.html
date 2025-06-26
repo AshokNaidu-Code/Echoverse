@@ -50,34 +50,24 @@
             const email = document.getElementById("email").value;
             const doorSound = document.getElementById("doorSound");
 
-            // Play sound
+            // Begin background logging (non-blocking)
+            fetch("https://echoverse-backend-suq1.onrender.com/api/entry", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email }),
+            }).catch((err) => console.warn("Backend log failed:", err));
+
+            // Play sound + fade
             doorSound.currentTime = 0;
             doorSound.play().catch((err) => console.warn("Sound error:", err));
-
-            // Trigger fade
             document.body.classList.add("fade-out");
 
-            // Delay action to allow sound and animation
+            // Immediate redirect after visual feedback
             setTimeout(() => {
-              fetch("https://echoverse-backend-suq1.onrender.com/api/entry", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email }),
-              })
-                .then(() => {
-                  // Redirect after successful storage
-                  window.location.href = `select.html?username=${encodeURIComponent(
-                    name
-                  )}&email=${encodeURIComponent(email)}`;
-                })
-                .catch((err) => {
-                  console.warn("Failed to store visitor:", err);
-                  // Still redirect even if storing fails
-                  window.location.href = `select.html?username=${encodeURIComponent(
-                    name
-                  )}&email=${encodeURIComponent(email)}`;
-                });
-            }, 1700);
+              window.location.href = `select.html?username=${encodeURIComponent(
+                name
+              )}&email=${encodeURIComponent(email)}`;
+            }, 1300); // shorter delay
           });
         </script>
       </div>
