@@ -1,0 +1,38 @@
+{
+  "name": "Echoverse DevOps Board",
+  "body": "A structured DevOps roadmap using Echoverse source code. Covers CI/CD, containerization, cloud deployment, monitoring, and more.",
+  "columns": [
+    {
+      "name": "🧠 Todo",
+      "cards": [
+        { "note": "Set up GitHub Actions to deploy backend automatically on push" },
+        { "note": "Add Dockerfile for backend (and frontend optionally)" },
+        { "note": "Define .env.example for safe local development" },
+        { "note": "Create a Render deploy script or API integration" },
+        { "note": "Add diagram to README showing Echoverse architecture" }
+      ]
+    },
+    {
+      "name": "🚧 In Progress",
+      "cards": [
+        { "note": "Connect GitHub Secrets to Render deployment workflow" },
+        { "note": "Test POST request to backend from GitHub-hosted frontend" }
+      ]
+    },
+    {
+      "name": "⛔ Blocked / Research",
+      "cards": [
+        { "note": "Explore using Terraform to deploy Echoverse infra" },
+        { "note": "Learn best practices for secure MongoDB Atlas networking" }
+      ]
+    },
+    {
+      "name": "✅ Done",
+      "cards": [
+        { "note": "Deployed Echoverse frontend to GitHub Pages" },
+        { "note": "Backend live on Render and connected to MongoDB" },
+        { "note": "IP whitelisted on MongoDB Atlas for remote access" }
+      ]
+    }
+  ]
+}
