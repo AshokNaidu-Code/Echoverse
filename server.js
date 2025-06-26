@@ -14,8 +14,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-app.post("/api/entry", async (req, res) => {
+app.post("https://echoverse-backend-suq1.onrender.com/api/entry", async (req, res) => {
   const { name, email } = req.body;
+  console.log('📝 Incoming entry:', name, email); 
   if (!name || !email)
     return res.status(400).json({ message: "Missing fields" });
 
