@@ -59,7 +59,7 @@
             // Navigate after delay
             setTimeout(() => {
               // Send data to backend
-              fetch("/api/entry", {
+              fetch("https://echoverse-backend-suq1.onrender.com/api/entry", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email }),
