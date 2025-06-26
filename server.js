@@ -4,11 +4,7 @@ const express = require("express");
 const path = require("path");
 const { MongoClient } = require("mongodb");
 const cors = require("cors");
-app.use(
-  cors({
-    origin: "https://ashoknaidu-code.github.io",
-  })
-);
+app.use(cors({ origin: "https://ashoknaidu-code.github.io" }));
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,6 +20,7 @@ app.post(
   async (req, res) => {
     const { name, email } = req.body;
     console.log("📝 Incoming entry:", name, email);
+    console.log("📝 Received from frontend:", req.body);
     if (!name || !email)
       return res.status(400).json({ message: "Missing fields" });
 
