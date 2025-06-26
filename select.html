@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Echoverse – Choose Your Reality</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/echoverse.css">
-</head>
-<body class="select-bg">
-  <div class="overlay center-flex">
-    <h2 id="greeting">Welcome, Wanderer</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Echoverse – Choose Your Reality</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/echoverse.css" />
+  </head>
+  <body class="select-bg">
+    <div class="overlay center-flex">
+      <h2 id="greeting">Welcome, Wanderer</h2>
 
-    <div class="room-buttons">
-      <a href="green.html" class="green-btn">🌿 Green Room</a>
-      <a href="red.html" class="red-btn">🕯️ Red Room</a>
+      <div class="room-buttons">
+        <a href="green.html" class="green-btn">🌿 Green Room</a>
+        <a href="red.html" class="red-btn">🕯️ Red Room</a>
+      </div>
     </div>
-  </div>
 
-  <audio autoplay loop>
-    <source src="assets/audio/ambient-hum.mp3" type="audio/mpeg">
-  </audio>
+    <audio id="bgAudio" loop>
+      <source src="assets/audio/ambient-hum.mp3" type="audio/mpeg" />
+    </audio>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const username = params.get('username');
-    if (username) {
-      document.getElementById('greeting').textContent = `Welcome, ${username}`;
-    }
-  </script>
-</body>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const username = params.get("username");
+      if (username) {
+        document.getElementById(
+          "greeting"
+        ).textContent = `Welcome, ${username}`;
+      }
+
+      // Trigger audio after slight delay
+      window.addEventListener("DOMContentLoaded", () => {
+        const bg = document.getElementById("bgAudio");
+        if (bg) {
+          const playPromise = bg.play();
+          if (playPromise !== undefined) {
+            playPromise.catch((err) => {
+              console.warn("Autoplay failed:", err);
+            });
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
